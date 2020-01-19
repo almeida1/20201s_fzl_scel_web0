@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,18 +24,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.formLogin().loginPage("/login")
 		.permitAll()
-		.and().logout().permitAll();
+		.and().logout().logoutSuccessUrl("/login?logout").permitAll();
 	}
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
 			
-			.withUser("carlos").password(pc().encode("123")).roles("ADMIN")
+			.withUser("jose").password(pc().encode("123")).roles("ADMIN")
 			.and()
-			.withUser("flavio").password(pc().encode("123")).roles("USUARIO");
+			.withUser("maria").password(pc().encode("456")).roles("USUARIO");
 	}
 	@Bean
 	public BCryptPasswordEncoder pc() {
 		return new BCryptPasswordEncoder();
+	}
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	    web.ignoring()
+	            .antMatchers( "/static/**", "/css/**", "/js/**", "/image/**", "/h2-console/**");
 	}
 }

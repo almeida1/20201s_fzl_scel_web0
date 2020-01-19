@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <title>Sistema de Controle de Empréstimo de Livros</title>
 <meta charset="UTF-8" />
@@ -44,19 +45,16 @@
 
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span class="nav-link active">Livros</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/livros/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
+					<li class="nav-item"><a class="nav-link" href="/livros/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/livros/consulta"> <i class="oi oi-spreadsheet"></i> <span>Listar
+					<li class="nav-item"><a class="nav-link" href="/livros/consulta"> <i class="oi oi-spreadsheet"></i> <span>Listar
 						</span>
 					</a></li>
 				</ul>
 
 				<ul class="nav nav-pills">
 					<li class="nav-item"><span class="nav-link active">Alunos</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/usuarios/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
+					<li class="nav-item"><a class="nav-link" href="/usuarios/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar
 						</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -76,9 +74,15 @@
 							<span>Listar </span>
 					</a></li>
 				</ul>
+				<ul class="nav nav-pills">
+				<form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out"/>
+                    </form>
+				</ul>
 			</nav>
 		</aside>
-
+                     
+		</section>
 		<section class="layout-content">
 
 			<nav class="navbar navbar-expand-md bg-light">
@@ -166,11 +170,14 @@
 					</div>
 				</div>
 			</div>
-
+      
 		</section>
 		
 	</div>
+	
 	<nav>
+	
+					
 	<footer th:replace="fragments/footer :: rodape">
 		<div>footer</div>
 	</footer>
