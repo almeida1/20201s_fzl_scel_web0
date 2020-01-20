@@ -90,9 +90,8 @@ public class UsuarioController {
 		Usuario umUsuario = service.findById(id);
 		umUsuario.setRa(usuario.getRa());
 		umUsuario.setNome(usuario.getNome());
-		umUsuario.setEmail(usuario.getEmail());
 		umUsuario.setCep(usuario.getCep());
-		umUsuario.setSenha(usuario.getSenha());
+		
 		
 		try {
 			String endereco = service.obtemEndereco(usuario.getCep());

@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/usuarios/cadastrar").hasAnyRole("ADMIN")
-		.antMatchers("/livros/cadastrar").hasAnyRole("USUARIO")
+		.antMatchers("/livros/cadastrar").hasAnyRole("BIB")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().loginPage("/login")
@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			
 			.withUser("jose").password(pc().encode("123")).roles("ADMIN")
 			.and()
-			.withUser("maria").password(pc().encode("456")).roles("USUARIO");
+			.withUser("maria").password(pc().encode("456")).roles("BIB");
 	}
 	@Bean
 	public BCryptPasswordEncoder pc() {
